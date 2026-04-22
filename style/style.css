@@ -101,7 +101,8 @@ html,body {
       border-radius: 4px;
       background: #f0f2f4;
       color: #333;
-      font-size: 0.85rem;
+      font-family: "Lora", Times, serif;
+      font-size: 0.9rem;
       text-decoration: none;
       border: 1px solid #ccc;
       cursor: pointer;
