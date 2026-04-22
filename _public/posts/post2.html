@@ -1,0 +1,148 @@
+<html>
+  <head>
+
+        <script type="text/javascript">
+          var wsUri = "ws://localhost:8080/websocket";
+      function init()
+      {
+        websocket = new WebSocket(wsUri);
+        websocket.onclose = function(evt) { onClose(evt) };
+      }
+      function onClose(evt)
+      {
+        console.log('closing');
+        websocket.close();
+        document.location.reload();
+      }
+      window.addEventListener("load", init, false);
+      </script>
+            <meta charSet="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>
+      SSS Blog (New Version)
+    </title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"/>
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.8.0/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/style/style.css"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="I'm a Guinea Pig"/>
+    <meta property="og:url" content="https://new.ssshupe.com/posts/post2.html"/>
+    <meta property="og:image" content="https://new.ssshupe.com/images/StanfordHosp.jpg"/>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="/images/bulma.png" alt="Logo"/>
+          </a>
+          <span class="navbar-burger burger" data-target="navbarMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+          <a class="navbar-item" href="/">
+            Home
+          </a>
+          <a class="navbar-item" href="/about.html">
+            About
+          </a>
+          <a class="navbar-item" href="/contact.html">
+            Contact
+          </a>
+        </div>
+      </div>
+    </nav>
+    <section class="hero is-info is-medium is-bold">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title has-text-black">
+            SSS Blog (New Version)
+          </h1>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <section class="articles">
+        <div class="column is-8 is-offset-2">
+          <div class="card article">
+            <div class="card-content">
+              <div class="media-content has-text-centered">
+                <p class="title article-title">
+                  <a href="/posts/post2.html">
+                    I'm a Guinea Pig
+                  </a>
+                </p>
+                <p class="subtitle is-6 article-subtitle">
+                  <a href="#">
+                    Steve Shupe
+                  </a>
+                  on 2026-04-18
+                </p>
+              </div>
+              <div class="article-image">
+                <img src="/images/StanfordHosp.jpg" alt="I'm a Guinea Pig"/>
+                <p class="image-caption">
+                  Stanford Hospital (New)
+                </p>
+              </div>
+              <div class="content article-body">
+                <p>I will be participating in a Phase 1 trial at Stanford for a new &quot;in vivo&quot; CAR-T treatment against multiple myeloma.</p>
+<p>The new product has been tested on a handful of people in Australia, and all are doing well. They had nominal side effects from the infusion process and their myeloma is under control.</p>
+<p>I know that risks exist from partcipating in the trial, but after discussing it with my doctors at Kaiser and Stanford and conducting a good amount of research, I concluded the risks were acceptable given the likely benefits.</p>
+<p>I go into the hospital at Stanford on May 3 and get the infusion of the treatment on May 4. I'll be in the hospital for 9 to 12 days and Suzie and I have to spend the next 2.5 to 3 weeks close to the Stanford hospital.</p>
+<p>I will use this blog to keep everyone updated. Good thoughts, wishes, etc. are appreciated.</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="share-section">
+            <p class="share-label">
+              Share this:
+            </p>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnew.ssshupe.com%2Fposts%2Fpost2.html" class="share-btn" target="_blank" rel="noopener noreferrer">
+              Facebook
+            </a>
+            <a href="https://bsky.app/intent/compose?text=I%27m%20a%20Guinea%20Pig%20https%3A%2F%2Fnew.ssshupe.com%2Fposts%2Fpost2.html" class="share-btn" target="_blank" rel="noopener noreferrer">
+              BlueSky
+            </a>
+            <a href="https://www.threads.net/intent/post?text=I%27m%20a%20Guinea%20Pig%20https%3A%2F%2Fnew.ssshupe.com%2Fposts%2Fpost2.html" class="share-btn" target="_blank" rel="noopener noreferrer">
+              Threads
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fnew.ssshupe.com%2Fposts%2Fpost2.html&text=I%27m%20a%20Guinea%20Pig" class="share-btn" target="_blank" rel="noopener noreferrer">
+              Twitter
+            </a>
+            <a href="mailto:?subject=I%27m%20a%20Guinea%20Pig&body=https%3A%2F%2Fnew.ssshupe.com%2Fposts%2Fpost2.html" class="share-btn">
+              Email
+            </a>
+            <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href).then(function(){var b=event.target;b.textContent='Copied!';setTimeout(function(){b.textContent='Copy Link'},2000)})">
+              Copy Link
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="site-footer">
+      <div class="container has-text-centered">
+        <p>
+          Copyright Steve Shupe — All Rights Reserved
+        </p>
+        <p>
+          Built with 
+          <a href="https://fsharp.org" target="_blank" rel="noopener noreferrer">
+            F#
+          </a>
+           and 
+          <a href="https://ionide.io/Tools/fornax.html" target="_blank" rel="noopener noreferrer">
+            Fornax
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
