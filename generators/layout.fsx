@@ -30,7 +30,7 @@ let injectWebsocketCode (webpage:string) =
     let index = webpage.IndexOf head
     webpage.Insert ( (index + head.Length + 1),websocketScript)
 
-let layout (ctx : SiteContents) active (ogMeta: (string * string) list) bodyCnt =
+let layout (ctx : SiteContents) active (ogMeta: (string * string * string) list) bodyCnt =
     let pages = ctx.TryGetValues<Pageloader.Page> () |> Option.defaultValue Seq.empty
     let siteInfo = ctx.TryGetValue<Globalloader.SiteInfo> ()
     let ttl =
@@ -56,8 +56,8 @@ let layout (ctx : SiteContents) active (ogMeta: (string * string) list) bodyCnt 
             link [Rel "stylesheet"; Href "https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"]
             link [Rel "stylesheet"; Href "https://unpkg.com/bulma@0.8.0/css/bulma.min.css"]
             link [Rel "stylesheet"; Type "text/css"; Href "/style/style.css"]
-            yield! ogMeta |> List.map (fun (prop, content) ->
-                meta [HtmlProperties.Custom("property", prop); Content content])
+            yield! ogMeta |> List.map (fun (attrName, attrVal, content) ->
+                meta [HtmlProperties.Custom(attrName, attrVal); Content content])
         ]
         body [] [
           nav [Class "navbar"] [

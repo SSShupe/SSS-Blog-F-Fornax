@@ -22,11 +22,20 @@ let generate' (ctx: SiteContents) (page: string) =
         |> Option.map (fun si -> si.siteUrl)
         |> Option.defaultValue ""
 
+    let plainDesc =
+        System.Text.RegularExpressions.Regex.Replace(post.summary, "<[^>]*>", "").Trim()
+        |> fun s -> if s.Length <= 160 then s else s.[..156] + "..."
+
     let ogMeta =
-        [ yield "og:type",  "article"
-          yield "og:title", post.title
-          yield "og:url",   siteUrl + post.link
-          yield! post.image |> Option.map (fun img -> [ "og:image", siteUrl + img ]) |> Option.defaultValue [] ]
+        [ yield "property", "og:type",        "article"
+          yield "property", "og:title",       post.title
+          yield "property", "og:url",         siteUrl + post.link
+          yield "property", "og:description", plainDesc
+          yield! post.image |> Option.map (fun img -> [ "property", "og:image", siteUrl + img ]) |> Option.defaultValue []
+          yield "name", "twitter:card",        (if post.image.IsSome then "summary_large_image" else "summary")
+          yield "name", "twitter:title",       post.title
+          yield "name", "twitter:description", plainDesc
+          yield! post.image |> Option.map (fun img -> [ "name", "twitter:image", siteUrl + img ]) |> Option.defaultValue [] ]
 
     Layout.layout
         ctx
