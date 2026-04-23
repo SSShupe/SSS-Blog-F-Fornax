@@ -4,9 +4,7 @@
 open Html
 
 let generate' (ctx: SiteContents) (_: string) =
-    let posts =
-        ctx.TryGetValues<Postloader.Post>()
-        |> Option.defaultValue Seq.empty
+    let posts = ctx.TryGetValues<Postloader.Post>() |> Option.defaultValue Seq.empty
 
     let siteInfo = ctx.TryGetValue<Globalloader.SiteInfo>()
 
@@ -38,39 +36,29 @@ let generate' (ctx: SiteContents) (_: string) =
             else
                 "/" + getFilenameForIndex (i + 1)
 
-        let previousPage =
-            if i = 0 then
-                "#"
-            else
-                "/" + getFilenameForIndex (i - 1)
+        let previousPage = if i = 0 then "#" else "/" + getFilenameForIndex (i - 1)
 
         Layout.layout
             ctx
             "Home"
             []
-            [ section [ Class "hero is-info is-medium is-bold" ] [
-                  div [ Class "hero-body" ] [
-                      div [ Class "container has-text-centered" ] [
-                          h1 [ Class "title has-text-black" ] [
-                              !!desc
-                          ]
-                      ]
-                  ]
-              ]
-              div [ Class "container" ] [
-                  section [ Class "articles" ] [
-                      div [ Class "column is-8 is-offset-2" ] psts
-                  ]
-              ]
-              div [ Class "container" ] [
-                  div [ Class "container has-text-centered" ] [
-                      a [ Href previousPage ] [
-                          !! "Previous"
-                      ]
-                      !!(sprintf "%i of %i" (i + 1) pages)
-                      a [ Href nextPage ] [ !! "Next" ]
-                  ]
-              ]
+            [ section
+                  [ Class "hero is-info is-medium is-bold" ]
+                  [ div
+                        [ Class "hero-body" ]
+                        [ div
+                              [ Class "container has-text-centered" ]
+                              [ h1 [ Class "title has-text-white is-size-1" ] [ !!desc ] ] ] ]
+              div
+                  [ Class "container" ]
+                  [ section [ Class "articles" ] [ div [ Class "column is-8 is-offset-2" ] psts ] ]
+              div
+                  [ Class "container" ]
+                  [ div
+                        [ Class "container has-text-centered" ]
+                        [ a [ Href previousPage ] [ !!"Previous" ]
+                          !!(sprintf "%i of %i" (i + 1) pages)
+                          a [ Href nextPage ] [ !!"Next" ] ] ]
               Layout.shareSection (siteUrl + "/") "Home" ]
 
     psts

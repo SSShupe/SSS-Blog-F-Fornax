@@ -10,36 +10,28 @@ let generate' (ctx: SiteContents) (_: string) =
     let siteInfo = ctx.TryGetValue<Globalloader.SiteInfo>()
 
     let desc =
-        siteInfo
-        |> Option.map (fun si -> si.description)
-        |> Option.defaultValue ""
+        siteInfo |> Option.map (fun si -> si.description) |> Option.defaultValue ""
 
 
     Layout.layout
         ctx
         "About"
         []
-        [ section [ Class "hero is-info is-medium is-bold" ] [
-              div [ Class "hero-body" ] [
-                  div [ Class "container has-text-centered" ] [
-                      h1 [ Class "title has-text-black" ] [
-                          !!desc
-                      ]
-                  ]
-              ]
-          ]
-          div [ Class "container" ] [
-              section [ Class "articles" ] [
-                  div [ Class "column is-8 is-offset-2" ] [
-                      div [ Class "card article" ] [
-                          div [ Class "card-content" ] [
-                              div [ Class "content article-body" ] [
-                                  !!about
-                              ]
-                          ]
-                      ]
-                  ]
-              ]
-          ] ]
+        [ section
+              [ Class "hero is-info is-medium is-bold" ]
+              [ div
+                    [ Class "hero-body" ]
+                    [ div
+                          [ Class "container has-text-centered" ]
+                          [ h1 [ Class "title has-text-white is-size-1" ] [ !!desc ] ] ] ]
+          div
+              [ Class "container" ]
+              [ section
+                    [ Class "articles" ]
+                    [ div
+                          [ Class "column is-8 is-offset-2" ]
+                          [ div
+                                [ Class "card article" ]
+                                [ div [ Class "card-content" ] [ div [ Class "content article-body" ] [ !!about ] ] ] ] ] ] ]
 
 let generate (ctx: SiteContents) (projectRoot: string) (page: string) = generate' ctx page |> Layout.render ctx
