@@ -63,9 +63,6 @@ let layout (ctx : SiteContents) active (ogMeta: (string * string * string) list)
           nav [Class "navbar"] [
             div [Class "container"] [
               div [Class "navbar-brand"] [
-                a [Class "navbar-item"; Href "/"] [
-                  img [Src "/images/bulma.png"; Alt "Logo"]
-                ]
                 span [Class "navbar-burger burger"; HtmlProperties.Custom ("data-target", "navbarMenu")] [
                   span [] []
                   span [] []
@@ -99,7 +96,7 @@ let render (ctx : SiteContents) cnt =
 let published (post: Postloader.Post) =
     post.published
     |> Option.defaultValue System.DateTime.Now
-    |> fun n -> n.ToString("yyyy-MM-dd")
+    |> fun n -> n.ToString("D")
 
 let shareSection (pageUrl: string) (pageTitle: string) =
     let enc (s: string) = System.Uri.EscapeDataString s
@@ -111,7 +108,7 @@ let shareSection (pageUrl: string) (pageTitle: string) =
     div [Class "share-section"] [
         p [Class "share-label"] [!! "Share this:"]
         a [Href fbUrl;      Class "share-btn"; HtmlProperties.Custom("target","_blank"); HtmlProperties.Custom("rel","noopener noreferrer")] [!! "Facebook"]
-        a [Href bskyUrl;    Class "share-btn"; HtmlProperties.Custom("target","_blank"); HtmlProperties.Custom("rel","noopener noreferrer")] [!! "BlueSky"]
+        a [Href bskyUrl;    Class "share-btn"; HtmlProperties.Custom("target","_blank"); HtmlProperties.Custom("rel","noopener noreferrer")] [!! "Bluesky"]
         a [Href threadsUrl; Class "share-btn"; HtmlProperties.Custom("target","_blank"); HtmlProperties.Custom("rel","noopener noreferrer")] [!! "Threads"]
         a [Href twUrl;      Class "share-btn"; HtmlProperties.Custom("target","_blank"); HtmlProperties.Custom("rel","noopener noreferrer")] [!! "Twitter"]
         a [Href emailUrl;   Class "share-btn"] [!! "Email"]

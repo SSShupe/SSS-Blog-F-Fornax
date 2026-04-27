@@ -14,7 +14,7 @@ let generate' (ctx: SiteContents) (_: string) =
 
     Layout.layout
         ctx
-        "Home"
+        "Contact"
         []
         [ section
               [ Class "hero is-info is-medium is-bold" ]
