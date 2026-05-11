@@ -1,17 +1,29 @@
 #r "../_lib/Fornax.Core.dll"
+#r "../_lib/Markdig.dll"
 #load "layout.fsx"
 
 open Html
+open System.IO
+open Markdig
 
-let about =
-    """I am a sort-of Iowa native now living in the Berkeley Hills with my wife Suzie and our dog Sparky. I graduated from the University of Iowa with a B.A. in political science and history, and received a J.D. from Cornell University. I had a diverse legal career, working for the federal courts, in a big law firm, and in-house for a financial corporation. For the largest stretch of my legal career I worked in the Office of the Sonoma County Counsel, mostly on water, environmental, and energy issues. I helped form the Sonoma Clean Power Authority (the second local "Community Choice Aggregation" entity in California) and later served as its General Counsel. I'm a francophile (Suzie and I live part-time in La Rochelle, France), photographer, amateur coder, sports nut (Hawkeyes, Cal Bears, Bay Area teams), and current events junkie. I'm politically moderate but strongly anti-Trump and anti-MAGA."""
+let markdownPipeline =
+    MarkdownPipelineBuilder()
+        .UsePipeTables()
+        .UseGridTables()
+        .Build()
 
-let generate' (ctx: SiteContents) (_: string) =
+let generate' (ctx: SiteContents) (projectRoot: string) (_: string) =
     let siteInfo = ctx.TryGetValue<Globalloader.SiteInfo>()
 
     let desc =
         siteInfo |> Option.map (fun si -> si.description) |> Option.defaultValue ""
 
+    let aboutContent =
+        let path = Path.Combine(projectRoot, "pages", "about.md")
+        if File.Exists path then
+            File.ReadAllText path |> fun t -> Markdown.ToHtml(t, markdownPipeline)
+        else
+            ""
 
     Layout.layout
         ctx
@@ -32,6 +44,6 @@ let generate' (ctx: SiteContents) (_: string) =
                           [ Class "column is-8 is-offset-2" ]
                           [ div
                                 [ Class "card article" ]
-                                [ div [ Class "card-content" ] [ div [ Class "content article-body" ] [ !!about ] ] ] ] ] ] ]
+                                [ div [ Class "card-content" ] [ div [ Class "content article-body" ] [ !!aboutContent ] ] ] ] ] ] ]
 
-let generate (ctx: SiteContents) (projectRoot: string) (page: string) = generate' ctx page |> Layout.render ctx
+let generate (ctx: SiteContents) (projectRoot: string) (page: string) = generate' ctx projectRoot page |> Layout.render ctx

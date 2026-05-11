@@ -9,6 +9,7 @@ let postPredicate (projectRoot: string, page: string) =
     if ext = ".md" then
         let ctn = File.ReadAllText fileName
         page.Contains("_public") |> not
+        && page.Contains(".claude") |> not
         && ctn.Contains("layout: post")
     else
         false
@@ -26,7 +27,8 @@ let staticPredicate (projectRoot: string, page: string) =
         page.Contains "_config.yml" ||
         page.Contains ".sass-cache" ||
         page.Contains ".git" ||
-        page.Contains ".ionide"
+        page.Contains ".ionide" ||
+        page.Contains ".claude"
     fileShouldBeExcluded |> not
 
 

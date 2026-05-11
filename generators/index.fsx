@@ -16,7 +16,7 @@ let generate' (ctx: SiteContents) (_: string) =
 
     let psts =
         posts
-        |> Seq.sortByDescending Layout.published
+        |> Seq.sortByDescending (fun p -> p.published |> Option.defaultValue System.DateTime.MinValue)
         |> Seq.toList
         |> List.chunkBySize postPageSize
         |> List.map (List.map (Layout.postLayout true))

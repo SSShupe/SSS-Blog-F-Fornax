@@ -50,7 +50,7 @@ let layout (ctx : SiteContents) active (ogMeta: (string * string * string) list)
             meta [CharSet "utf-8"]
             meta [Name "viewport"; Content "width=device-width, initial-scale=1"]
             title [] [!! ttl]
-            link [Rel "icon"; Type "image/png"; Sizes "32x32"; Href "/images/favicon.png"]
+            link [Rel "icon"; Type "image/x-icon"; Href "/images/favicon.ico"]
             link [Rel "stylesheet"; Href "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"]
             link [Rel "stylesheet"; Href "https://fonts.googleapis.com/css?family=Open+Sans"]
             link [Rel "stylesheet"; Href "https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"]
