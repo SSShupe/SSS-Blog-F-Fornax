@@ -11,7 +11,7 @@ let loader (projectRoot: string) (siteContent: SiteContents) =
         { title = "SSS Blog (New Version)"
           description = "SSS Blog (New Version)"
           postPageSize = 5
-          siteUrl = "https://sss-alt-blog.netlify.app" }
+          siteUrl = "https://snax.ssshupe.com" }
 
     siteContent.Add(siteInfo)
 
